@@ -15,7 +15,7 @@ Dockerfile written for it (upstream ships none), with its dependencies pinned.
 
 ```bash
 isoloom generate
-isoloom up docker
+isoloom run docker
 ```
 
 Then open http://localhost:9032/. The same spec runs as Docker on a local VM (`docker-vm`), on a
