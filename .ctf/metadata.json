@@ -1,0 +1,9 @@
+{
+  "title": "vuLnDAP",
+  "description": "vuLnDAP: a deliberately vulnerable Go web shop whose stock, users and groups live in an LDAP directory, to practise LDAP injection and business logic flaws in an LDAP-backed application.",
+  "question": "Abuse the shop's LDAP queries to read what the directory holds beyond fruit and vegetables.",
+  "category": "WEB",
+  "difficulty": 2,
+  "evidence_kind": "SECRET",
+  "capabilities": ["ldap-injection", "business-logic-flaws", "information-disclosure"]
+}

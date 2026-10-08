@@ -1,0 +1,31 @@
+# yaml-language-server: $schema=https://www.isoloom.com/schema/v1.json
+# vuLnDAP (by Robin Wood, digininja) as an Isoloom spec: the upstream Go source, vendored unchanged
+# in build/web/app/, built by a Dockerfile we wrote with pinned dependencies (upstream has none).
+# One process serves the web shop and its LDAP directory (on localhost).
+# `isoloom generate`, then `isoloom up docker`.
+version: 1
+name: vulndap
+
+networks:
+  lab: { cidr: 10.60.32.0/24, internet: false }
+
+machines:
+  web:
+    networks: { lab: 10 }
+    services: [{ port: 9090, name: web, http: true, publish: 9032 }]
+    resources: { cpus: 1, memory_mb: 256 }
+    docker:
+      build: build/web
+
+checks:
+  - name: vuLnDAP answers
+    http: http://web:9090/
+    wait: 180
+  - name: the stock pages read the LDAP directory
+    script: checks/ldap.sh
+  - name: the item page is served
+    http: http://web:9090/item?cn=banana
+
+message: |
+  vuLnDAP answers at http://localhost:{{ machines.web.services.0.publish }}/. It is a shop whose
+  stock lives in an LDAP directory: look at how the stock pages build their LDAP queries.
