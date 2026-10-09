@@ -4,6 +4,5 @@
   "question": "Abuse the shop's LDAP queries to read what the directory holds beyond fruit and vegetables.",
   "category": "WEB",
   "difficulty": 2,
-  "evidence_kind": "SECRET",
-  "capabilities": ["ldap-injection", "business-logic-flaws", "information-disclosure"]
+  "evidence_kind": "SECRET"
 }
