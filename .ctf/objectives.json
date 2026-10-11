@@ -1,0 +1,41 @@
+{
+  "objectives": [
+    {
+      "key": "main",
+      "title": "Read the flag",
+      "prompt": "Abuse the way the shop builds its LDAP queries to read directory entries that are not fruit or vegetables. The flag is the description of one of the directory's users.",
+      "check": { "evidence": "SECRET", "format": "FLAG{%s}" },
+      "dev": "FLAG{dev-vulndap}",
+      "hints": [
+        "View the page source of an item page: the shop prints the LDAP search filter it used in an HTML comment.",
+        "The item page puts your value into the filter unescaped and lets you choose which attributes come back. Which vulnerability class is that?"
+      ],
+      "steps": [
+        {
+          "key": "page",
+          "title": "Find the page",
+          "prompt": "Which shop page shows one stock item and takes the item's name in the URL? (its path)",
+          "check": { "answer": ["/item", "item"] }
+        },
+        {
+          "key": "parameter",
+          "title": "Find the input",
+          "prompt": "Which query string parameter of that page goes into the LDAP filter unescaped?",
+          "check": { "answer": ["cn"] }
+        },
+        {
+          "key": "attributes",
+          "title": "Choose the attributes",
+          "prompt": "Which query string parameter decides which LDAP attributes the page displays?",
+          "check": { "answer": ["disp"] }
+        },
+        {
+          "key": "class",
+          "title": "Name the flaw",
+          "prompt": "Which vulnerability class is this?",
+          "check": { "answer": ["ldap injection", "ldapi", "ldap filter injection"] }
+        }
+      ]
+    }
+  ]
+}

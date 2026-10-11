@@ -17,5 +17,8 @@ COPY --from=build /vuLnDAP /usr/local/bin/vuLnDAP
 COPY app/resources/ resources/
 COPY app/resources.md .
 COPY app/vulndap.cfg-sample vulndap.cfg
+# start.sh adds the CTF flag to the directory (a user's description) from the sample at each start.
+COPY app/vulndap.cfg-sample vulndap.cfg-sample
+COPY start.sh /usr/local/bin/vulndap-start
 EXPOSE 9090
-CMD ["vuLnDAP"]
+CMD ["sh", "/usr/local/bin/vulndap-start"]
