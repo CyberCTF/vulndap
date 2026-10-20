@@ -1,8 +1,11 @@
 {
+  "project_name": "cyberlabs-vulndap",
+  "slug": "vulndap",
   "title": "vuLnDAP",
   "description": "vuLnDAP: a deliberately vulnerable Go web shop whose stock, users and groups live in an LDAP directory, to practise LDAP injection and business logic flaws in an LDAP-backed application.",
-  "question": "Use the item page's LDAP injection to read the description of the directory user that holds the flag.",
-  "category": "WEB",
+  "category": "web",
   "difficulty": 2,
-  "evidence_kind": "SECRET"
+  "evidence_kind": "SECRET",
+  "capabilities": [],
+  "question": "Use the item page's LDAP injection to read the description of the directory user that holds the flag."
 }
